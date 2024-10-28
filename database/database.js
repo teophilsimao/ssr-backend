@@ -1,10 +1,12 @@
+// Database
+
 const mongo = require('mongodb').MongoClient;
-const collectionName = 'document';
+// const collectionName = 'documents';
 require('dotenv').config();
 
 const database = {
-    getDb: async function getDb() {       
-        let dsn = `mongodb+srv://zlyde94:matnTAfdjOjNerpX@documents.xaxzx.mongodb.net/documents?retryWrites=true&w=majority&appName=Documents`
+    getDb: async function getDb(collectionName) {       
+        let dsn = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@cluster0.zarw2.mongodb.net/texteditor?retryWrites=true&w=majority&appName=Cluster0"`
 
         if (process.env.NODE_ENV === 'test') {
             dsn = `mongodb://localhost:27017/test`;
@@ -12,7 +14,7 @@ const database = {
 
         const client = await mongo.connect(dsn);
         const db = await client.db();
-        const collection = await db.collection(collectionName);
+        const collection = collectionName ? await db.collection(collectionName) : null;
 
         return {
             db: db,
@@ -22,9 +24,5 @@ const database = {
     }
 }
 
-// , {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// }
 
 module.exports = database;
