@@ -13,7 +13,7 @@ const app = express();
 const server = createServer(app)
 const io = new Server(server, {
     cors: {
-        origin: '*',
+        origin: 'https://www.student.bth.se/~tesi23/editor/',
         methods: ['GET', 'POST']
     }
 });

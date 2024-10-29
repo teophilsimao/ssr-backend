@@ -107,7 +107,7 @@ const docs = {
             );
             console.log('Document shared');
         } else {
-            const invitationUrl = `http://localhost:3000/#/register?email=${email}`;
+            const invitationUrl = `https://www.student.bth.se/~tesi23/editor/#/register?email=${email}`;
             const msg = {
                 to: email,
                 from: 'anteo.ssr@gmail.com',
