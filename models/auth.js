@@ -48,7 +48,7 @@ const auth = {
             const newUser = { email, password: hash, verificationCode, verified: false };
             await db.collection.insertOne(newUser);
 
-            const verificationUrl = `https://www.student.bth.se/~tesi23/editor/#/verify-email?code=${verificationCode}&email=${email}`;
+            const verificationUrl = `https://www.student.bth.se/~anlm19/editor/#/verify-email?code=${verificationCode}&email=${email}`;
 
             const msg = {
                 to: email,
@@ -98,7 +98,7 @@ const auth = {
                 {$set: {resetToken, resetTokenExp}}
             );
 
-            const resetUrl = `https://www.student.bth.se/~tesi23/editor/#/reset-password?token=${resetToken}&email=${email}`
+            const resetUrl = `https://www.student.bth.se/~anlm19/editor/#/reset-password?token=${resetToken}&email=${email}`
             const msg = {
                 to: email,
                 from: 'anteo.ssr@gmail.com',
