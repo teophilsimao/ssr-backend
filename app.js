@@ -10,13 +10,6 @@ require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 const port = process.env.PORT || 1337;
 const app = express();
-const server = createServer(app)
-const io = new Server(server, {
-    cors: {
-        origin: 'https://www.student.bth.se/~anlm19/editor/',
-        methods: ['GET', 'POST']
-    }
-});
 
 app.use(express.json());
 app.use(cors());
@@ -27,7 +20,24 @@ const authRoute = require('./route/auth');
 app.use('/documents', documentRoute);
 app.use('/', authRoute);
 
-// const colors = ['#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33A1', '#A133FF'];
+const server = createServer(app)
+const io = new Server(server, {
+    cors: {
+        origin: 'https://www.student.bth.se',
+        methods: ['GET', 'POST'],
+        credentials: true
+    }
+});
+
+// app.use(express.json());
+// app.use(cors());
+
+// const documentRoute = require('./route/documents');
+// const authRoute = require('./route/auth');
+
+// app.use('/documents', documentRoute);
+// app.use('/', authRoute);
+
 const roomUsers = {};
 
 io.use((socket, next) => {
